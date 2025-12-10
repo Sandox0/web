@@ -1,17 +1,17 @@
-/* ... (El resto del CSS es igual, solo cambia esta parte del #crack-overlay) ... */
-
 /* --- IMAGEN DE LA GRIETA --- */
 #crack-overlay {
     position: fixed; top: 0; left: 0; width: 100%; height: 100%;
     
-    /* RUTA ACTUALIZADA: ../ significa "subir un nivel" para salir de la carpeta css */
-    background: url('../assets/crack.png') no-repeat center center;
+    /* RUTA ACTUALIZADA: Sube un nivel y entra a img */
+    background: url('../img/crack.png') no-repeat center center;
     
     background-size: cover; pointer-events: none; display: none;
     z-index: 200; opacity: 0.9; mix-blend-mode: hard-light;
 }
 
-/* ... (Copia y pega el resto de tu CSS anterior aquí abajo, no cambia nada más) ... */
+/* ... COPIA AQUÍ EL RESTO DEL CSS QUE YA TENÍAS (body, botones, etc) ... */
+/* (El resto del código CSS no cambia, puedes pegar el anterior aquí abajo) */
+
 /* --- ESTILOS GENERALES --- */
 body { 
     margin: 0; 
@@ -48,4 +48,51 @@ body {
 .warning-text { color: #ffff00; text-shadow: 0 0 5px yellow; }
 .progress-container { width: 100%; background: #333; height: 20px; margin-top: 10px; display: none; border: 1px solid #0f0; }
 .progress-bar { width: 0%; height: 100%; background: #ff3333; transition: width 0.2s; }
-.broken-screen-effect { animation: violentShake 0.4s linear; filter: contrast(2) brightness(1.5) sepia(1) hue-rotate(-50deg); background-color: #20
+.broken-screen-effect { animation: violentShake 0.4s linear; filter: contrast(2) brightness(1.5) sepia(1) hue-rotate(-50deg); background-color: #200; }
+#final-party { 
+    display: none; width: 100%; min-height: 100vh; 
+    flex-direction: column; align-items: center; justify-content: center; 
+    background: radial-gradient(circle, #1a1a1a 0%, #000000 100%); 
+    z-index: 50; 
+    padding: 20px 0;
+}
+.card-container {
+    position: relative; text-align: center; animation: zoomIn 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    background: rgba(255, 255, 255, 0.05); padding: 40px; border-radius: 30px;
+    border: 1px solid rgba(255,255,255,0.1); backdrop-filter: blur(10px);
+    box-shadow: 0 0 50px rgba(255, 215, 0, 0.2);
+    width: 90%; max-width: 500px; 
+    margin: 20px;
+}
+.photo-wrapper {
+    width: 250px; height: 250px; border-radius: 50%; border: 8px solid #FFD700;
+    overflow: hidden; margin: 0 auto 20px; position: relative;
+    box-shadow: 0 0 40px #FFD700, 0 0 80px #ff6b6b; animation: float 3s ease-in-out infinite;
+}
+.photo-wrapper img { width: 100%; height: 100%; object-fit: cover; }
+h1 { font-size: 3.5em; margin: 0; color: #fff; text-transform: uppercase; letter-spacing: 5px; text-shadow: 0 0 20px #FFD700; line-height: 1; }
+h2 { font-size: 2em; color: #ff6b6b; margin-top: 10px; text-shadow: 0 0 10px red; }
+.roast { font-size: 1.5em; color: #ff4444; margin-top: 25px; font-weight: bold; text-shadow: 0 0 10px #ff0000; animation: pulse 2s infinite;}
+.mvp-badge { 
+    background: #FFD700; color: #000; padding: 5px 15px; border-radius: 5px; 
+    font-weight: bold; position: absolute; top: -15px; right: 10px; transform: rotate(10deg);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.5); font-size: 1rem; z-index: 10;
+}
+
+/* --- ANIMACIONES --- */
+@keyframes pulseGreen { 0% { box-shadow: 0 0 15px #0f0; } 50% { box-shadow: 0 0 30px #0f0, 0 0 50px #0f0; } 100% { box-shadow: 0 0 15px #0f0; } }
+@keyframes zoomIn { from { transform: scale(0); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+@keyframes float { 0% { transform: translateY(0px); } 50% { transform: translateY(-20px); } 100% { transform: translateY(0px); } }
+@keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
+@keyframes violentShake {
+    0% { transform: translate(0px, 0px) rotate(0deg); } 20% { transform: translate(-15px, 15px) rotate(-3deg); }
+    40% { transform: translate(15px, -15px) rotate(3deg); } 60% { transform: translate(-15px, 0px) rotate(-2deg); }
+    80% { transform: translate(15px, 15px) rotate(2deg); } 100% { transform: translate(0px, 0px) rotate(0deg); }
+}
+@media (max-width: 600px) { 
+    h1 { font-size: 2.5em; } 
+    .photo-wrapper { width: 180px; height: 180px; } 
+    #terminal { font-size: 14px; } 
+    .roast { font-size: 1.2em; } 
+    .card-container { padding: 20px; margin-top: 50px;} 
+}
