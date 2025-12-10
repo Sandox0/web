@@ -1,17 +1,3 @@
-/* --- IMAGEN DE LA GRIETA --- */
-#crack-overlay {
-    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-    
-    /* RUTA ACTUALIZADA: Sube un nivel y entra a img */
-    background: url('../img/crack.png') no-repeat center center;
-    
-    background-size: cover; pointer-events: none; display: none;
-    z-index: 200; opacity: 0.9; mix-blend-mode: hard-light;
-}
-
-/* ... COPIA AQUÍ EL RESTO DEL CSS QUE YA TENÍAS (body, botones, etc) ... */
-/* (El resto del código CSS no cambia, puedes pegar el anterior aquí abajo) */
-
 /* --- ESTILOS GENERALES --- */
 body { 
     margin: 0; 
@@ -26,6 +12,17 @@ body {
     justify-content: center; 
     user-select: none; 
 }
+
+/* --- IMAGEN DE LA GRIETA --- */
+#crack-overlay {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    /* Sube un nivel y entra a img */
+    background: url('../img/crack.png') no-repeat center center;
+    background-size: cover; pointer-events: none; display: none;
+    z-index: 200; opacity: 0.9; mix-blend-mode: hard-light;
+}
+
+/* --- PANTALLA 1: START --- */
 #start-screen { 
     z-index: 100; text-align: center; width: 100%; height: 100vh; 
     display: flex; flex-direction: column; justify-content: center; align-items: center; 
@@ -38,6 +35,8 @@ body {
     position: relative; z-index: 101; max-width: 90%;
 }
 .btn-hack:hover { background: #0f0; color: #000; box-shadow: 0 0 30px #0f0; }
+
+/* --- PANTALLA 2: TERMINAL TROLL --- */
 #terminal { 
     display: none; width: 90%; max-width: 700px; height: 80vh; 
     overflow-y: auto; padding: 20px; box-sizing: border-box; 
@@ -46,9 +45,12 @@ body {
 .line { margin-bottom: 8px; font-size: 18px; white-space: pre-wrap; } 
 .error-text { color: #ff3333; text-shadow: 0 0 10px red; font-weight: bold; font-size: 1.1em; }
 .warning-text { color: #ffff00; text-shadow: 0 0 5px yellow; }
+
 .progress-container { width: 100%; background: #333; height: 20px; margin-top: 10px; display: none; border: 1px solid #0f0; }
 .progress-bar { width: 0%; height: 100%; background: #ff3333; transition: width 0.2s; }
 .broken-screen-effect { animation: violentShake 0.4s linear; filter: contrast(2) brightness(1.5) sepia(1) hue-rotate(-50deg); background-color: #200; }
+
+/* --- PANTALLA 3: FINAL EPICO --- */
 #final-party { 
     display: none; width: 100%; min-height: 100vh; 
     flex-direction: column; align-items: center; justify-content: center; 
@@ -89,10 +91,21 @@ h2 { font-size: 2em; color: #ff6b6b; margin-top: 10px; text-shadow: 0 0 10px red
     40% { transform: translate(15px, -15px) rotate(3deg); } 60% { transform: translate(-15px, 0px) rotate(-2deg); }
     80% { transform: translate(15px, 15px) rotate(2deg); } 100% { transform: translate(0px, 0px) rotate(0deg); }
 }
+
+/* --- MÓVIL (AJUSTES IMPORTANTES) --- */
 @media (max-width: 600px) { 
-    h1 { font-size: 2.5em; } 
+    h1 { font-size: 2em; } 
     .photo-wrapper { width: 180px; height: 180px; } 
     #terminal { font-size: 14px; } 
     .roast { font-size: 1.2em; } 
     .card-container { padding: 20px; margin-top: 50px;} 
+
+    /* CORRECCIÓN DEL BOTÓN PARA QUE NO SE SALGA */
+    .btn-hack {
+        font-size: 16px; 
+        padding: 15px 20px;
+        width: auto;
+        max-width: 80%;
+        white-space: nowrap;
+    }
 }
