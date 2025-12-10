@@ -29,30 +29,24 @@ function moverBoton() {
     sound.play().catch(e=>{});
     setTimeout(() => sound.pause(), 100);
 
-    // 1. Obtener dimensiones REALES
-    const winWidth = window.innerWidth;
-    const winHeight = window.innerHeight;
-    const btnWidth = btnStart.offsetWidth;
-    const btnHeight = btnStart.offsetHeight;
-
-    // 2. Calcular espacio libre seguro (restando tamaño del botón y un margen)
-    const maxSpaceX = Math.max(0, winWidth - btnWidth - 20); 
-    const maxSpaceY = Math.max(0, winHeight - btnHeight - 20);
-
-    // 3. Generar coordenadas
-    const randomX = Math.random() * maxSpaceX;
-    const randomY = Math.random() * maxSpaceY;
-
-    // 4. Aplicar movimiento
-    btnStart.style.position = "fixed"; 
-    btnStart.style.left = `${randomX + 10}px`; // +10 margen mínimo
-    btnStart.style.top = `${randomY + 10}px`;
+    // Calcular márgenes seguros para que no se salga
+    // Usamos el ancho de la ventana menos el ancho aproximado del botón (300px) y un margen de seguridad (20px)
+    const maxX = window.innerWidth - btnStart.offsetWidth - 20; 
+    const maxY = window.innerHeight - btnStart.offsetHeight - 20;
     
-    // Cambios visuales (Texto corto para evitar problemas en móvil)
-    btnStart.innerText = "¡ERROR!"; 
+    // Asegurarse de que los valores no sean negativos
+    const safeX = Math.max(0, maxX);
+    const safeY = Math.max(0, maxY);
+
+    const x = Math.random() * safeX + 10; // +10 para un pequeño margen izquierdo
+    const y = Math.random() * safeY + 10; // +10 para un pequeño margen superior
+    
+    btnStart.style.position = "fixed"; 
+    btnStart.style.left = `${x}px`;
+    btnStart.style.top = `${y}px`;
+    btnStart.innerText = "¡ERROR DE ACCESO!";
     btnStart.style.borderColor = "red";
     btnStart.style.color = "red";
-    btnStart.style.zIndex = "1000";
 }
 
 function resetearBoton() {
